@@ -6,7 +6,8 @@ GraphicsScene::GraphicsScene(QObject *parent) :
     QGraphicsScene(parent)
 {
     this->setBackgroundBrush(Qt::black);
-//    myNumber = 20;
+    myNumber = 0;
+//    this-> ->setMouseTracking(true);
 }
 
 void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
@@ -21,10 +22,11 @@ void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
 void GraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent)
 {
     mousePoint = mouseEvent->scenePos();
-    emit changedMousePosition(mousePoint);
-
     MouseX = mouseEvent->scenePos().x();
     MouseY = mouseEvent->scenePos().y();
+
+    emit changedMousePosition(mousePoint);
+
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }
 
@@ -34,13 +36,13 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent)
     MouseX = mouseEvent->scenePos().x();
     MouseY = mouseEvent->scenePos().y();
     mousePoints.append(mouseEvent->scenePos());
-//    myNumber++;
 
     MainWindow *mainWindow = new MainWindow();
     mainWindow->Count++;
 
     if(mousePoints.size() == 2)
     {
+        myNumber++;
         QColor color;
         color.setRgb(128, 0, 255);
         QPen pen;
@@ -87,6 +89,5 @@ void GraphicsScene::setNumber(int num)
 
 int GraphicsScene::getNumber(void)
 {
-    myNumber++;
     return myNumber;
 }

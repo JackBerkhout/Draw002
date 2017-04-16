@@ -27,7 +27,7 @@ public:
 
     int Count;
 
-    GraphicsScene graphicsScene;
+//    GraphicsScene graphicsScene;
 
 public slots:
     void MyTimerSlot();
@@ -45,7 +45,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    GraphicsScene *scene;
 
     int timerId;
 

@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Setup signal and slot
     connect(timer, SIGNAL(timeout()), this, SLOT(MyTimerSlot()));
     // Setup interval in msec
-    timer->start(1000);
+    timer->start(100);
 
     scene->setBackgroundBrush(Qt::black);
 
@@ -44,9 +44,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(scene, &GraphicsScene::changedMousePosition, this, &MainWindow::onChangedMousePosition);
 
-//    graphicsScene = &scene;
-//    GraphicsScene graphicsScene; //Create instance
-    graphicsScene.setNumber(30);
+    scene->setNumber(30);
+    ui->label->setText(QString("hello"));
+    ui->graphicsView->setMouseTracking(true);
 }
 
 MainWindow::~MainWindow()
@@ -117,18 +117,20 @@ void MainWindow::MyTimerSlot()
 //    QPointF mousePoint = graphicsScene->getMousePoint();
 
 //    GraphicsScene graphicsScene; //Create instance
-    QPointF mousePoint = graphicsScene.getMousePoint();
+//    QPointF mousePoint = scene->getMousePoint();
 
-    int MouseX   = graphicsScene.getMouseX();
-    int MouseY   = graphicsScene.getMouseY();
-    int myNumber = graphicsScene.getNumber();
-    qDebug() << "Timer..." << QString("Mouse: %1, %2").arg(mousePoint.x()).arg(mousePoint.y());
-    qDebug() << "Timer..." << QString("Mouse: %1, %2").arg(MouseX).arg(MouseY);
-    qDebug() << "Timer..." << QString("Number: %1").arg(myNumber);
-    statusBar()->showMessage(QString("x,y: %1, %2").arg(MouseX).arg(MouseY));
+//    int MouseX   = scene->getMouseX();
+//    int MouseY   = scene->getMouseY();
+    int myNumber = scene->getNumber();
+//    qDebug() << "Timer..." << QString("Mouse: %1, %2").arg(mousePoint.x()).arg(mousePoint.y());
+//    qDebug() << "Timer..." << QString("Mouse: %1, %2").arg(MouseX).arg(MouseY);
+//    qDebug() << "Timer..." << QString("Number: %1").arg(myNumber);
+//    statusBar()->showMessage(QString("x,y: %1, %2").arg(mousePoint.x()).arg(mousePoint.y()));
+    ui->label->setText(QString("%1").arg(myNumber));
 }
 
 void MainWindow::onChangedMousePosition(QPointF mousePoint)
 {
-    statusBar()->showMessage(QString("x: %1 y: %2").arg(mousePoint.x()).arg(mousePoint.y()));
+//    statusBar()->showMessage(QString("x: %1 y: %2").arg(mousePoint.x()).arg(mousePoint.y()));
+    statusBar()->showMessage(QString("x,y: %1, %2").arg(mousePoint.x()).arg(mousePoint.y()));
 }
