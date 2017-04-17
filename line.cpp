@@ -31,24 +31,6 @@ void GraphicsScene::setLineP2(int x, int y)
     color.setRgb(255, 255, 255);
     pen.setColor(color);
 
-//    QPainter painter;
-////    QRectF rect;
-////    rect.setX(0);
-////    rect.setY(0);
-////    rect.setWidth(1000);
-////    rect.setHeight(1000);
-////    this->drawBackground(painter, rect);
-
-//    painter.begin(this);
-//    QPointF p1, p2;
-//    p1.setX(100);
-//    p1.setY(100);
-//    p2.setX(200);
-//    p2.setY(200);
-//    painter.setPen(QPen(Qt::white, 12, Qt::DashLine, Qt::RoundCap));
-//    painter.drawLine(p1, p2);
-//    painter.end();
-
     this->addLine(RubberBand.X1n, RubberBand.Y1n, RubberBand.X2n, RubberBand.Y2n, pen);
     RubberBand.X1o = RubberBand.X1n;
     RubberBand.Y1o = RubberBand.Y1n;
