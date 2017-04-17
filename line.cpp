@@ -5,8 +5,7 @@ Line::Line():
 {
 }
 
-void Line::drawLine(int x1, int y1, int x2, int y2):
-    GraphicsScene(parent)
+void Line::drawLine(int x1, int y1, int x2, int y2)
 {
     // Just draw something by clicking a button
 
