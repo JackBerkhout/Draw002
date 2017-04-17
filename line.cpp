@@ -1,7 +1,7 @@
 #include "line.h"
 
 Line::Line():
-    GraphicsScene(parent)
+    GraphicsScene()
 {
 }
 
