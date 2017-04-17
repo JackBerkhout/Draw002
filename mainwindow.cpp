@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int sceneHeight = this->height()-160;
     ui->graphicsView->resize(sceneWidth, sceneHeight);
     ui->graphicsView->setSceneRect(0, 0, sceneWidth, sceneHeight);
-    ui->graphicsView->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::HighQualityAntialiasing);
+//    ui->graphicsView->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::HighQualityAntialiasing);
     ui->graphicsView->scale(1, -1); // Coordinate 0,0 at Bottom-Left
 
     statusBar()->showMessage(QString("Size: %1, %2 ").arg(Width).arg(Height));
@@ -90,8 +90,9 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::on_toolButtonDraw_clicked()
 {
-    Line myLine;
-    myLine.drawLine(300, 100, 500, 300);
+//    Line myLine;
+    scene->myLine(100, 100, 1500, 500);
+
 
 //    // Just draw something by clicking a button
 //    QColor color;
