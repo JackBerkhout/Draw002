@@ -43,6 +43,9 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent)
     if(mousePoints.size() == 2)
     {
         myNumber++;
+
+        emit changedNumber(myNumber);
+
         QColor color;
         color.setRgb(128, 0, 255);
         QPen pen;

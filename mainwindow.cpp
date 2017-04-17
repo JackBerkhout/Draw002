@@ -43,10 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(scene, SIGNAL(GraphicsScene::changedMousePosition(QPointF mousePoint)), this, SLOT(MainWindow::onChangedMousePosition(QPointF mousePoint)));
 
     connect(scene, &GraphicsScene::changedMousePosition, this, &MainWindow::onChangedMousePosition);
+    connect(scene, &GraphicsScene::changedNumber, this, &MainWindow::onChangedNumber);
 
-    scene->setNumber(30);
     ui->label->setText(QString("hello"));
     ui->graphicsView->setMouseTracking(true);
+
+    scene->setNumber(0);
 }
 
 MainWindow::~MainWindow()
@@ -88,14 +90,17 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::on_toolButtonDraw_clicked()
 {
-    // Just draw something by clicking a button
-    QColor color;
-    color.setRgb(128, 0, 255);
-    QPen pen;
-    pen.setColor(color);
-    pen.setWidth(20);
-    pen.setCapStyle(Qt::RoundCap);
-    scene->addLine(300, 100, 500, 300, pen);
+    Line myLine;
+    myLine.line(300, 100, 500, 300);
+
+//    // Just draw something by clicking a button
+//    QColor color;
+//    color.setRgb(128, 0, 255);
+//    QPen pen;
+//    pen.setColor(color);
+//    pen.setWidth(20);
+//    pen.setCapStyle(Qt::RoundCap);
+//    scene->addLine(300, 100, 500, 300, pen);
 //    scene2->addLine(100, 100, 300, 300, pen);
 }
 
@@ -126,11 +131,17 @@ void MainWindow::MyTimerSlot()
 //    qDebug() << "Timer..." << QString("Mouse: %1, %2").arg(MouseX).arg(MouseY);
 //    qDebug() << "Timer..." << QString("Number: %1").arg(myNumber);
 //    statusBar()->showMessage(QString("x,y: %1, %2").arg(mousePoint.x()).arg(mousePoint.y()));
-    ui->label->setText(QString("%1").arg(myNumber));
+//    ui->label->setText(QString("%1").arg(myNumber));
 }
 
 void MainWindow::onChangedMousePosition(QPointF mousePoint)
 {
 //    statusBar()->showMessage(QString("x: %1 y: %2").arg(mousePoint.x()).arg(mousePoint.y()));
     statusBar()->showMessage(QString("x,y: %1, %2").arg(mousePoint.x()).arg(mousePoint.y()));
+}
+
+void MainWindow::onChangedNumber(int Number)
+{
+//    statusBar()->showMessage(QString("x: %1 y: %2").arg(mousePoint.x()).arg(mousePoint.y()));
+    ui->label->setText(QString("N: %1").arg(Number));
 }

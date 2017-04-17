@@ -28,6 +28,7 @@ public:
 
 signals:
     void changedMousePosition(QPointF mousePoint);
+    void changedNumber(int myNumber);
 
 public slots:
 

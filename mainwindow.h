@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include "graphicsscene.h"
+#include "line.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,7 @@ public:
 public slots:
     void MyTimerSlot();
     void onChangedMousePosition(QPointF mousePoint);
+    void onChangedNumber(int Number);
 
 
 private slots:
