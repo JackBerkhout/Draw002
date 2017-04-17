@@ -91,7 +91,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 void MainWindow::on_toolButtonDraw_clicked()
 {
     Line myLine;
-    myLine.line(300, 100, 500, 300);
+    myLine.drawLine(300, 100, 500, 300);
 
 //    // Just draw something by clicking a button
 //    QColor color;

@@ -9,7 +9,8 @@
 class Line: public GraphicsScene
 {
 public:
-    void line(int x1, int y1, int x2, int y2);
+    Line();
+    void drawLine(int x1, int y1, int x2, int y2);
 };
 
 #endif // LINE_H

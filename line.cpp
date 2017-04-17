@@ -1,6 +1,12 @@
 #include "line.h"
 
-void Line::line(int x1, int y1, int x2, int y2)
+Line::Line():
+    GraphicsScene(parent)
+{
+}
+
+void Line::drawLine(int x1, int y1, int x2, int y2):
+    GraphicsScene(parent)
 {
     // Just draw something by clicking a button
 
