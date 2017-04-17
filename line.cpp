@@ -51,5 +51,5 @@ void GraphicsScene::drawLine(int x1, int y1, int x2, int y2)
     pen.setWidth(20);
     pen.setCapStyle(Qt::RoundCap);
 
-    this->addLine(x1, y1, x2, y2, pen); // Didn't draw the line on the scene
+    this->addLine(x1, y1, x2, y2, pen);
 }
