@@ -1,22 +1,25 @@
 #include "mainwindow.h"
 #include "graphicsscene.h"
 #include <QDebug>
-#include "line.h"
 
 GraphicsScene::GraphicsScene(QObject *parent) :
     QGraphicsScene(parent)
 {
-    this->setBackgroundBrush(Qt::black);
+    mRubberband = new RubberBandItem;
+    setBackgroundBrush(Qt::black);
     myNumber = 0;
     CoordinateNumber = 0;
-//    this-> ->setMouseTracking(true);
+
+
+    //connect(this, &GraphicsScene::sceneRectChanged, rubberband, &RubberBandItem::onRectChanged);
+
 }
 
 void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
 {
-//    mousePoint = mouseEvent->scenePos();
-//    MouseX = mousePoint.x();
-//    MouseY = mousePoint.y();
+    //    mousePoint = mouseEvent->scenePos();
+    //    MouseX = mousePoint.x();
+    //    MouseY = mousePoint.y();
     qDebug() << Q_FUNC_INFO << mouseEvent->scenePos();
     QGraphicsScene::mouseDoubleClickEvent(mouseEvent);
 }
@@ -29,9 +32,10 @@ void GraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent)
 
     emit changedMousePosition(mousePoint);
 
-    if (CoordinateNumber == 1) {
-        setLineP2(MouseX, MouseY);
-    }
+    //if (CoordinateNumber == 1) {
+    mRubberband->setP2(mouseEvent->scenePos());
+    //qDebug()<<mRubberband->p2();
+    //}
 
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }
@@ -44,9 +48,21 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent)
     mousePoints.append(mouseEvent->scenePos());
 
     CoordinateNumber++;
-    if (CoordinateNumber == 1) {
-        setLineP1(MouseX, MouseY);
+    //if (CoordinateNumber == 1) {
+
+    bool isItem = false;
+    for(auto item: items()){
+        if(item==mRubberband){
+            isItem = true;
+            break;
+        }
     }
+    if(isItem)
+        removeItem(mRubberband);
+    else
+        addItem(mRubberband);
+    mRubberband->setP1( mouseEvent->scenePos());
+    //}
 
     MainWindow *mainWindow = new MainWindow();
     mainWindow->Count++;
@@ -63,11 +79,11 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent)
         pen.setColor(color);
         pen.setWidth(20);
         pen.setCapStyle(Qt::RoundCap);
-        this->addLine(mousePoints.at(0).x(), mousePoints.at(0).y(), mousePoints.at(1).x(), mousePoints.at(1).y(), pen);
+        addLine(mousePoints.at(0).x(), mousePoints.at(0).y(), mousePoints.at(1).x(), mousePoints.at(1).y(), pen);
 
         mousePoints.clear();
         CoordinateNumber = 0;
-        RubberBand.Drawn = false;
+        //RubberBand.Drawn = false;
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
@@ -110,14 +126,27 @@ int GraphicsScene::getNumber(void)
 
 void GraphicsScene::myLine(int x1, int y1, int x2, int y2)
 {
-//    drawLine(x1, y1, x2, y2);
-    QPoint point1, point2;
-    point1.setX(x1);
-    point1.setY(y1);
-    point2.setX(x2);
-    point2.setY(y2);
+        drawLine(x1, y1, x2, y2);
+//    QPoint point1, point2;
+//    point1.setX(x1);
+//    point1.setY(y1);
+//    point2.setX(x2);
+//    point2.setY(y2);
+}
 
-//    QPainter painter(this);
-//    painter.setCompositionMode(QPainter::RasterOp_SourceXorDestination);
-//    painter.drawLine(point1, point2);
+
+void GraphicsScene::drawLine(int x1, int y1, int x2, int y2)
+{
+    // Just draw something by clicking a button
+
+    qDebug() << "line2";                 // This debug message is shown
+
+    QColor color;
+    color.setRgb(128, 0, 255);
+    QPen pen;
+    pen.setColor(color);
+    pen.setWidth(20);
+    pen.setCapStyle(Qt::RoundCap);
+
+    addLine(x1, y1, x2, y2, pen); // Didn't draw the line on the scene
 }

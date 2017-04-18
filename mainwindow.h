@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include "graphicsscene.h"
-#include "line.h"
 
 namespace Ui {
 class MainWindow;

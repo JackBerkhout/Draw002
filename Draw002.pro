@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Draw001
+TARGET = Draw002
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,10 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     graphicsscene.cpp \
-    line.cpp
+    rubberbanditem.cpp
 
 HEADERS  += mainwindow.h \
     graphicsscene.h \
-    line.h
+    rubberbanditem.h
 
 FORMS    += mainwindow.ui
