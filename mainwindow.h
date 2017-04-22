@@ -18,16 +18,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    float rgb2gray(float r, float g, float c);
-    int Pxl(int A, int B);
-
     bool eventFilter(QObject *obj, QEvent *event);
 
     void eraseScreen(void);
-    void drawPixel(int x, int y, QColor color);
-    int Dither(int Resolution, int SizeX, int SizeY);
 
-    QTimer *timer;
     QPointF mousePoint;
 
     int Count;
@@ -35,7 +29,6 @@ public:
 //    GraphicsScene graphicsScene;
 
 public slots:
-    void MyTimerSlot();
     void onChangedMousePosition(QPointF mousePoint);
     void onChangedNumber(int Number);
 
