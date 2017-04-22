@@ -2,6 +2,7 @@
 #define RUBBERBANDITEM_H
 
 #include <QGraphicsLineItem>
+// http://doc.qt.io/qt-4.8/qgraphicslineitem.html
 
 class RubberBandItem : public QGraphicsLineItem
 {

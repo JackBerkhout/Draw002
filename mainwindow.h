@@ -18,9 +18,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    float rgb2gray(float r, float g, float c);
+    int Pxl(int A, int B);
+
     bool eventFilter(QObject *obj, QEvent *event);
 
     void eraseScreen(void);
+    void drawPixel(int x, int y, QColor color);
+    int Dither(int Resolution, int SizeX, int SizeY);
 
     QTimer *timer;
     QPointF mousePoint;
@@ -49,6 +54,7 @@ private:
     GraphicsScene *scene;
 
     int timerId;
+    bool flipVertical;
 
 protected:
 
